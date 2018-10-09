@@ -1,10 +1,10 @@
 Bacteria[] Frida;
-Zombie Jp;  
+// Zombie Jp;  
  void setup()   
  {     
  	//initialize bacteria variables here
  	size(1000,500);
- 	Jp = new Zombie();
+ 	// Jp = new Zombie();
  	Frida = new Bacteria[20];
  	for (int i = 0; i< Frida.length; i++)
  	{
@@ -15,15 +15,16 @@ Zombie Jp;
  void draw()   
  {    
  	background(244, 194, 66);
- 	Jp.show();
- 	Jp.move();
+ 	// Jp.show();
+ 	// Jp.move();
+ 	iceCream(); 
  	for(int i=0; i < Frida.length; i++)
  	{
  		Frida[i].show();
  		Frida[i].move();
  	}
 
- 	//move and show the bacteria   
+ 	 
  }  
  class Bacteria    
  {     
@@ -31,7 +32,7 @@ Zombie Jp;
  	boolean healthy = true;
  	Bacteria() //constructor
  	{
- 		myX = 500;
+ 		myX = 0;
  		myY =  250;
  		myColor = color(209, 113, 50);//orange
  		
@@ -43,15 +44,21 @@ Zombie Jp;
  		myX = myX +(int)(Math.random()*11)-5;//adds to the randomness to not make chunks
  		myY = myY +(int)(Math.random()*11)-5;
  		
- 		if (Jp.theirX>myX) //when mouse's x is greater than myX's make Bacteria move away to the left
- 			myX= myX + (int)(Math.random()*5)-3;//to the left
- 		else//when mouse's x is less than myX's make Bacteria move away to the right
- 			myX= myX +(int)(Math.random()*5)-1;//to the right
+ 		//make bacteria go to ice cream on right
+ 		myX= myX + (int)(Math.random()*5)-1;
 
- 		if (Jp.theirY>myY) //when mouse's y is greater than myY, make Bacteria move up and away
- 			myY= myY + (int)(Math.random()*5)-3;
- 		else//when mouse's y is less than myY, make Bacteria move down and away
- 			myY = myY + (int)(Math.random()*5)-1;
+
+
+
+ 		// if (Jp.theirX>myX) //when mouse's x is greater than myX's make Bacteria move away to the left
+ 		// 	myX= myX + (int)(Math.random()*5)-3;//to the left
+ 		// else//when mouse's x is less than myX's make Bacteria move away to the right
+ 		// 	myX= myX +(int)(Math.random()*5)-1;//to the right
+
+ 		// if (Jp.theirY>myY) //when mouse's y is greater than myY, make Bacteria move up and away
+ 		// 	myY= myY + (int)(Math.random()*5)-3;
+ 		// else//when mouse's y is less than myY, make Bacteria move down and away
+ 		// 	myY = myY + (int)(Math.random()*5)-1;
 
  		// if (myX>999) 
  		// 	myX = 1;
@@ -69,16 +76,17 @@ Zombie Jp;
  	void show()
  	{
  		if (healthy==true) {
- 			ellipse(myX,myY,20,20);
+ 			
  			fill(myColor);
  			stroke(myColor);
+ 			ellipse(myX,myY,20,20);
  		}
 
- 		if (dist(Jp.theirX,Jp.theirY,myX,myY)<10) {
- 			healthy=false;
- 			// fill(244, 194, 66);
- 			fill(255,0,0);
- 		}
+ 		// if (dist(Jp.theirX,Jp.theirY,myX,myY)<10) {
+ 		// 	healthy=false;
+ 		// 	// fill(244, 194, 66);
+ 		// 	fill(255,0,0);
+ 		// }
 
  	}
 
@@ -121,4 +129,16 @@ Zombie Jp;
  		fill(theirColor);
  		stroke(theirColor);
  	}
+ }
+
+
+ void iceCream()
+ {
+ 	 fill(244, 212, 129);//vanilla
+ 	ellipse(900,230, 100, 100);
+ 	fill(244, 152, 129);// pink
+ 	ellipse(900, 150, 100, 100);
+ 	fill(89, 66, 0);//chocolate
+ 	ellipse(900,290,100,100);
+
  }
